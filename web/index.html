@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>چت‌بات پارت</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <aside id="sources-panel">
+    <h2>منابع</h2>
+    <p id="sources-note">
+      این بخش فقط برای دیباگ و بررسی توسعه‌دهنده است. منابع بازگشتی از
+      ویکی‌پدیا پیش از ورود به مدل، از یک فیلتر خودکار سیاسی عبور می‌کنند.
+    </p>
+    <div id="sources-list">بعد از هر سؤال، منابع ویکی‌پدیای پاسخ اینجا می‌آد.</div>
+  </aside>
+
+  <div class="chat-card">
+    <header>
+      <span>چت‌بات پارت</span>
+      <a id="entity-report-link" href="/entity-report.xlsx" download>دانلود گزارش موجودیت‌ها (Excel)</a>
+    </header>
+
+    <main id="chat-log"></main>
+
+    <form id="chat-form">
+      <input id="chat-input" type="text" placeholder="سؤالت رو بنویس..." autocomplete="off">
+      <button type="submit">ارسال</button>
+    </form>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

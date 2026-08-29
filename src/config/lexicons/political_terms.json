@@ -1,0 +1,360 @@
+{
+  "terms": [
+    {
+      "name": "انتخابات",
+      "aliases": []
+    },
+    {
+      "name": "رفراندوم",
+      "aliases": []
+    },
+    {
+      "name": "همه پرسی",
+      "aliases": []
+    },
+    {
+      "name": "کودتا",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "براندازی",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "اپوزیسیون",
+      "aliases": []
+    },
+    {
+      "name": "حکومت نظامی",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "قوه مجریه",
+      "aliases": []
+    },
+    {
+      "name": "قوه قضاییه",
+      "aliases": []
+    },
+    {
+      "name": "مجلس",
+      "aliases": []
+    },
+    {
+      "name": "پارلمان",
+      "aliases": []
+    },
+    {
+      "name": "حزب",
+      "aliases": []
+    },
+    {
+      "name": "اصلاح طلب",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "اصولگرا",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "دموکراسی",
+      "aliases": []
+    },
+    {
+      "name": "دیکتاتوری",
+      "aliases": []
+    },
+    {
+      "name": "استبداد",
+      "aliases": []
+    },
+    {
+      "name": "سیاست خارجی",
+      "aliases": []
+    },
+    {
+      "name": "روابط سیاسی",
+      "aliases": []
+    },
+    {
+      "name": "روابط دیپلماتیک",
+      "aliases": []
+    },
+    {
+      "name": "دیپلماسی",
+      "aliases": []
+    },
+    {
+      "name": "تحریم",
+      "aliases": []
+    },
+    {
+      "name": "برجام",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "مذاکرات هسته ای",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "سفارت",
+      "aliases": []
+    },
+    {
+      "name": "کنسولگری",
+      "aliases": []
+    },
+    {
+      "name": "معاهده",
+      "aliases": []
+    },
+    {
+      "name": "پیمان",
+      "aliases": []
+    },
+    {
+      "name": "ژئوپلیتیک",
+      "aliases": []
+    },
+    {
+      "name": "جاسوسی",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "بمب اتم",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "بمب اتمی",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "سلاح هسته ای",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "کلاهک هسته ای",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "غنی سازی اورانیوم",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "موشک بالستیک",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "توان نظامی",
+      "aliases": []
+    },
+    {
+      "name": "قدرت نظامی",
+      "aliases": []
+    },
+    {
+      "name": "حمله نظامی",
+      "aliases": []
+    },
+    {
+      "name": "اشغال",
+      "aliases": []
+    },
+    {
+      "name": "جنگ",
+      "aliases": []
+    },
+    {
+      "name": "ارتش",
+      "aliases": []
+    },
+    {
+      "name": "پهپاد",
+      "aliases": []
+    },
+    {
+      "name": "موشک",
+      "aliases": []
+    },
+    {
+      "name": "تروریست",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "تروریسم",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "زندانی سیاسی",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "تظاهرات",
+      "aliases": []
+    },
+    {
+      "name": "اعتراضات",
+      "aliases": []
+    },
+    {
+      "name": "شورش",
+      "aliases": []
+    },
+    {
+      "name": "حقوق بشر",
+      "aliases": []
+    },
+    {
+      "name": "اعدام",
+      "aliases": []
+    },
+    {
+      "name": "سانسور",
+      "aliases": []
+    },
+    {
+      "name": "فیلترینگ",
+      "aliases": []
+    },
+    {
+      "name": "حجاب اجباری",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "پناهنده سیاسی",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "سیاسی",
+      "aliases": []
+    },
+    {
+      "name": "سیاست",
+      "aliases": []
+    },
+    {
+      "name": "انقلاب",
+      "aliases": []
+    },
+    {
+      "name": "ایدئولوژی",
+      "aliases": []
+    },
+    {
+      "name": "اسلام سیاسی",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "ولایت فقیه",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "صهیونیسم",
+      "aliases": [],
+      "hard": true
+    },
+    {
+      "name": "کمونیسم",
+      "aliases": []
+    },
+    {
+      "name": "فاشیسم",
+      "aliases": []
+    },
+    {
+      "name": "لیبرالیسم",
+      "aliases": []
+    }
+  ],
+  "organizations": [
+    {
+      "name": "ناتو",
+      "aliases": []
+    },
+    {
+      "name": "سازمان ملل",
+      "aliases": []
+    },
+    {
+      "name": "شورای امنیت",
+      "aliases": []
+    },
+    {
+      "name": "آژانس بین المللی انرژی اتمی",
+      "aliases": []
+    },
+    {
+      "name": "اوپک",
+      "aliases": []
+    },
+    {
+      "name": "اتحادیه اروپا",
+      "aliases": []
+    },
+    {
+      "name": "داعش",
+      "aliases": []
+    },
+    {
+      "name": "طالبان",
+      "aliases": []
+    },
+    {
+      "name": "القاعده",
+      "aliases": []
+    },
+    {
+      "name": "حماس",
+      "aliases": []
+    },
+    {
+      "name": "حزب الله",
+      "aliases": []
+    },
+    {
+      "name": "سپاه پاسداران",
+      "aliases": []
+    },
+    {
+      "name": "موساد",
+      "aliases": []
+    },
+    {
+      "name": "سیا",
+      "aliases": []
+    },
+    {
+      "name": "پنتاگون",
+      "aliases": []
+    },
+    {
+      "name": "کاخ سفید",
+      "aliases": []
+    },
+    {
+      "name": "کنگره آمریکا",
+      "aliases": []
+    }
+  ]
+}

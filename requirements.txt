@@ -1,0 +1,13 @@
+langgraph
+langchain-core
+langchain-openai
+pydantic
+pydantic-settings
+httpx
+python-dotenv
+hazm
+fastapi
+uvicorn
+openpyxl
+pytest
+pytest-asyncio

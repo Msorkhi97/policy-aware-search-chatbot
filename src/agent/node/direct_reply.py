@@ -1,0 +1,51 @@
+from src.agent.state import ChatState
+from src.config.settings import get_settings
+from src.llm.llm import LLM
+from src.prompts.direct_reply import DIRECT_REPLY_PROMPT
+from src.services.history import format_history
+
+
+async def run(state: ChatState) -> dict:
+    settings = get_settings()
+
+    question = state.get(
+        "normalized_question",
+        state["question"],
+    )
+
+    history = format_history(state.get("history", []))
+
+    prompt = DIRECT_REPLY_PROMPT.format(
+        question=question,
+        history=history,
+    )
+
+    try:
+        llm = LLM(
+            provider="openai",
+            model="gpt-4o-mini",
+        )
+
+        answer = await llm.generate(prompt)
+
+    except Exception as exc:
+        print(f"پاسخ مستقیم شکست خورد: {exc}")
+
+        return {
+            "answer": settings.moderation.no_search_message,
+        }
+
+    answer = answer.strip()
+
+    if not answer:
+        answer = settings.moderation.no_search_message
+
+    if answer == settings.moderation.refusal_message:
+        return {
+            "answer": answer,
+            "refused": True,
+        }
+
+    return {
+        "answer": answer,
+    }

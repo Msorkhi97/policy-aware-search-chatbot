@@ -1,8 +1,12 @@
+import logging
+
 from src.agent.state import ChatState
 from src.config.settings import get_settings
 from src.llm.llm import LLM
 from src.prompts.direct_reply import DIRECT_REPLY_PROMPT
 from src.services.history import format_history
+
+logger = logging.getLogger(__name__)
 
 
 async def run(state: ChatState) -> dict:
@@ -22,14 +26,14 @@ async def run(state: ChatState) -> dict:
 
     try:
         llm = LLM(
-            provider="openai",
-            model="gpt-4o-mini",
+            provider=settings.llm.provider,
+            model=settings.llm.model,
         )
 
         answer = await llm.generate(prompt)
 
     except Exception as exc:
-        print(f"پاسخ مستقیم شکست خورد: {exc}")
+        logger.error(f"پاسخ مستقیم شکست خورد: {exc}")
 
         return {
             "answer": settings.moderation.no_search_message,

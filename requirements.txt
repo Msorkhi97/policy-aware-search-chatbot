@@ -2,7 +2,6 @@ langgraph
 langchain-core
 langchain-openai
 pydantic
-pydantic-settings
 httpx
 python-dotenv
 hazm

@@ -3,7 +3,7 @@ const form = document.getElementById("chat-form")
 const input = document.getElementById("chat-input")
 const sourcesList = document.getElementById("sources-list")
 
-let history = []
+let sessionId = null
 
 function addBubble(role, text) {
   const bubble = document.createElement("div")
@@ -54,48 +54,59 @@ form.addEventListener("submit", async (event) => {
   input.disabled = true
   addBubble("user", question)
 
-  const response = await fetch("/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question, history }),
-  })
-
   addBubble("assistant", "")
   const bubble = chatLog.lastElementChild
 
-  const reader = response.body.getReader()
-  const decoder = new TextDecoder()
-  let buffer = ""
   let data = null
 
-  while (true) {
-    const { done, value } = await reader.read()
-    if (done) break
+  try {
+    const response = await fetch("/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question, session_id: sessionId }),
+    })
 
-    buffer += decoder.decode(value, { stream: true })
-    const lines = buffer.split("\n")
-    buffer = lines.pop()
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
 
-    for (const line of lines) {
-      if (!line) continue
-      const event = JSON.parse(line)
+    const reader = response.body.getReader()
+    const decoder = new TextDecoder()
+    let buffer = ""
 
-      if (event.chunk) {
-        bubble.textContent += event.chunk
-        chatLog.scrollTop = chatLog.scrollHeight
-      } else if (event.done) {
-        data = event
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+
+      buffer += decoder.decode(value, { stream: true })
+      const lines = buffer.split("\n")
+      buffer = lines.pop()
+
+      for (const line of lines) {
+        if (!line) continue
+        const event = JSON.parse(line)
+
+        if (event.chunk) {
+          bubble.textContent += event.chunk
+          chatLog.scrollTop = chatLog.scrollHeight
+        } else if (event.done) {
+          data = event
+        }
       }
     }
+  } catch (error) {
+    console.error(error)
   }
 
-  if (!bubble.textContent) {
-    bubble.textContent = data.answer
+  if (!data) {
+    bubble.textContent = "مشکلی در ارتباط با سرور پیش اومد؛ لطفاً دوباره امتحان کن."
+    input.disabled = false
+    input.focus()
+    return
   }
 
+  bubble.textContent = data.answer
+
+  sessionId = data.session_id
   renderSources(data.sources)
-  history.push({ role: "user", content: question })
-  history.push({ role: "assistant", content: data.answer })
 
   if (data.limit_reached) {
     input.placeholder = "به سقفِ سؤال‌ها رسیدی — صفحه رو رفرش کن"

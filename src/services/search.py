@@ -1,7 +1,11 @@
+import logging
+
 import httpx
 
 from src.config.search import SearchConfig
 from src.contracts.models import SearchDocument
+
+logger = logging.getLogger(__name__)
 
 FILLER_PHRASES = [
     "چگونه به وجود می‌آید",
@@ -80,7 +84,7 @@ async def wikipedia_search(query: str, config: SearchConfig) -> list[SearchDocum
             break
         except httpx.HTTPError as exc:
             if attempt == 1:
-                print(f"جست‌وجوی ویکی‌پدیا برای «{query}» شکست خورد: {exc}")
+                logger.error(f"جست‌وجوی ویکی‌پدیا برای «{query}» شکست خورد: {exc}")
                 return []
 
     pages = payload.get("query", {}).get("pages", [])

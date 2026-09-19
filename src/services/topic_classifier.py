@@ -1,5 +1,9 @@
+import logging
+
 from src.contracts.models import Entity, TopicResult
 from src.prompts.entities import ENTITIES_PROMPT
+
+logger = logging.getLogger(__name__)
 
 
 async def classify_topic(text: str, history: str, llm) -> TopicResult:
@@ -24,5 +28,5 @@ async def classify_topic(text: str, history: str, llm) -> TopicResult:
 
     except Exception as exc:
 
-        print(f"استخراج موجودیت با مدل زبانی شکست خورد: {exc}")
+        logger.error(f"استخراج موجودیت با مدل زبانی شکست خورد: {exc}")
         return TopicResult(needs_search=True, entities=[])

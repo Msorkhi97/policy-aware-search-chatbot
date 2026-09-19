@@ -1,5 +1,6 @@
 import json
 import re
+from functools import lru_cache
 from pathlib import Path
 
 from src.contracts.models import ModerationResult
@@ -9,6 +10,7 @@ from src.prompts.sensitivity import SENSITIVITY_PROMPT
 LEXICON_DIR = Path(__file__).resolve().parent.parent / "config" / "lexicons"
 
 
+@lru_cache
 def load_lexicon() -> dict:
     with open(LEXICON_DIR / "political_char.json", encoding="utf-8") as f:
         people = json.load(f)
@@ -16,13 +18,9 @@ def load_lexicon() -> dict:
     with open(LEXICON_DIR / "political_terms.json", encoding="utf-8") as f:
         terms = json.load(f)
 
-    with open(LEXICON_DIR / "countries.json", encoding="utf-8") as f:
-        countries = json.load(f)
-
     return {
         "people": people["figures"],
         "terms": terms["terms"],
-        "countries": countries["countries"],
     }
 
 
@@ -48,13 +46,6 @@ def find_sensitive_term(text: str) -> tuple[str, str] | None:
         for name in names:
             if contains_word(text, name.lower()) and term.get("hard", False):
                 return "term", name
-
-    for country in lexicon["countries"]:
-        names = [country["name"], *country.get("aliases", [])]
-
-        for name in names:
-            if contains_word(text, name.lower()):
-                return "country", name
 
     return None
 

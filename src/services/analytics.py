@@ -1,4 +1,5 @@
 import json
+import logging
 from collections import Counter
 from pathlib import Path
 
@@ -6,13 +7,14 @@ from openpyxl import Workbook
 
 from src.contracts.models import ChatResponse
 
+logger = logging.getLogger(__name__)
+
 RELEVANT_ENTITY_TYPES = {"country", "person", "politician"}
 
 
-def log_interaction(path: Path, question: str, response: ChatResponse) -> None:
+def log_interaction(path: Path, response: ChatResponse) -> None:
     record = {
         "request_id": response.request_id,
-        "question": question,
         "refused": response.refused,
         "category": response.moderation.category if response.moderation else "none",
         "entities": [{"text": e.text, "type": e.type} for e in response.entities],
@@ -23,11 +25,14 @@ def log_interaction(path: Path, question: str, response: ChatResponse) -> None:
         with path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
     except OSError as exc:
-        print(f"ثبت رکورد تحلیلی شکست خورد: {exc}")
+        logger.error(f"ثبت رکورد تحلیلی شکست خورد: {exc}")
 
 
 def count_entities(path: Path) -> dict:
     counts = {entity_type: Counter() for entity_type in RELEVANT_ENTITY_TYPES}
+
+    if not path.exists():
+        return counts
 
     with path.open(encoding="utf-8") as f:
         for line in f:

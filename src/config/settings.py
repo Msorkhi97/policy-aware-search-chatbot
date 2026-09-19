@@ -4,12 +4,14 @@ from dotenv import load_dotenv
 
 from src.config.analytics import AnalyticsConfig
 from src.config.conversation import ConversationConfig
+from src.config.llm import LLMConfig
 from src.config.moderation import ModerationConfig
 from src.config.search import SearchConfig
 
 
 class Settings:
     def __init__(self):
+        self.llm = LLMConfig()
         self.moderation = ModerationConfig()
         self.search = SearchConfig()
         self.analytics = AnalyticsConfig()

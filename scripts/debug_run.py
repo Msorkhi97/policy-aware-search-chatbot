@@ -2,7 +2,9 @@ import asyncio
 import logging
 
 from src.agent.graph import build_graph
+from src.config.settings import get_settings
 from src.contracts.models import ChatRequest
+from src.llm.llm import LLM
 
 QUESTION = "بهترین رژیم برای لاغری چیه؟"
 
@@ -15,10 +17,16 @@ async def run() -> None:
     state = {
         "request_id": request.request_id,
         "question": request.question,
-        "history": request.history,
+        "history": [],
     }
 
     final = await graph.ainvoke(state)
+
+    prompt = final.get("generate_prompt")
+    if prompt:
+        llm_config = get_settings().llm
+        llm = LLM(provider=llm_config.provider, model=llm_config.model)
+        final["answer"] = await llm.generate(prompt)
 
     print("refused:", final.get("refused"))
     print("moderation:", final.get("moderation"))

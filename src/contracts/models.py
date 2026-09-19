@@ -9,8 +9,8 @@ class ChatMessage(BaseModel):
 
 
 class ChatRequest(BaseModel):
-    question: str
-    history: list[ChatMessage] = Field(default_factory=list)
+    question: str = Field(min_length=1, max_length=1000)
+    session_id: str | None = None
     request_id: str = Field(default_factory=lambda: uuid.uuid4().hex[:12])
 
 
@@ -40,6 +40,7 @@ class SearchDocument(BaseModel):
 
 class ChatResponse(BaseModel):
     request_id: str
+    session_id: str
     answer: str
     refused: bool = False
     moderation: ModerationResult | None = None
